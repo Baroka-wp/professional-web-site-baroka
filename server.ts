@@ -5,26 +5,39 @@ import { fileURLToPath } from "url";
 import axios from "axios";
 import dotenv from "dotenv";
 import cors from "cors";
-import Database from "better-sqlite3";
+import { neon } from "@neondatabase/serverless";
 
 dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Initialize SQLite database (simulating Cloudflare D1)
-const db_local = new Database("testimonials.db");
+// Initialize Neon database
+const sql = process.env.DATABASE_URL ? neon(process.env.DATABASE_URL) : null;
 
-// Create testimonials table
-db_local.exec(`
-  CREATE TABLE IF NOT EXISTS testimonials (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    role TEXT,
-    content TEXT NOT NULL,
-    rating INTEGER DEFAULT 5,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  )
-`);
+// Create testimonials table if it doesn't exist
+const initDb = async () => {
+  if (sql) {
+    try {
+      await sql`
+        CREATE TABLE IF NOT EXISTS testimonials (
+          id SERIAL PRIMARY KEY,
+          name TEXT NOT NULL,
+          role TEXT,
+          content TEXT NOT NULL,
+          rating INTEGER DEFAULT 5,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `;
+      console.log("Database initialized successfully.");
+    } catch (error) {
+      console.error("Error initializing database:", error);
+    }
+  } else {
+    console.warn("DATABASE_URL is missing. Database initialization skipped.");
+  }
+};
+
+initDb();
 
 async function startServer() {
   const app = express();
@@ -80,9 +93,12 @@ async function startServer() {
   });
 
   // API Routes for Testimonials
-  app.get("/api/testimonials", (req, res) => {
+  app.get("/api/testimonials", async (req, res) => {
+    if (!sql) {
+      return res.status(500).json({ error: "Database not configured." });
+    }
     try {
-      const testimonials = db_local.prepare("SELECT * FROM testimonials ORDER BY created_at DESC").all();
+      const testimonials = await sql`SELECT * FROM testimonials ORDER BY created_at DESC`;
       res.json(testimonials);
     } catch (error) {
       console.error("Error fetching testimonials:", error);
@@ -90,7 +106,10 @@ async function startServer() {
     }
   });
 
-  app.post("/api/testimonials", (req, res) => {
+  app.post("/api/testimonials", async (req, res) => {
+    if (!sql) {
+      return res.status(500).json({ error: "Database not configured." });
+    }
     const { name, role, content, rating } = req.body;
 
     if (!name || !content) {
@@ -98,12 +117,13 @@ async function startServer() {
     }
 
     try {
-      const info = db_local.prepare(
-        "INSERT INTO testimonials (name, role, content, rating) VALUES (?, ?, ?, ?)"
-      ).run(name, role || "", content, rating || 5);
+      const result = await sql`
+        INSERT INTO testimonials (name, role, content, rating) 
+        VALUES (${name}, ${role || ""}, ${content}, ${rating || 5}) 
+        RETURNING *
+      `;
       
-      const newTestimonial = db_local.prepare("SELECT * FROM testimonials WHERE id = ?").get(info.lastInsertRowid);
-      res.status(201).json(newTestimonial);
+      res.status(201).json(result[0]);
     } catch (error) {
       console.error("Error saving testimonial:", error);
       res.status(500).json({ error: "Erreur lors de l'enregistrement du témoignage." });
