@@ -12,12 +12,20 @@ dotenv.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Initialize Neon database
-const sql = process.env.DATABASE_URL ? neon(process.env.DATABASE_URL) : null;
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  console.error("CRITICAL: DATABASE_URL environment variable is missing!");
+} else {
+  console.log("DATABASE_URL is present. Attempting to connect to Neon...");
+}
+
+const sql = databaseUrl ? neon(databaseUrl) : null;
 
 // Create testimonials table if it doesn't exist
 const initDb = async () => {
   if (sql) {
     try {
+      console.log("Initializing database table...");
       await sql`
         CREATE TABLE IF NOT EXISTS testimonials (
           id SERIAL PRIMARY KEY,
@@ -28,12 +36,10 @@ const initDb = async () => {
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
       `;
-      console.log("Database initialized successfully.");
+      console.log("Database table 'testimonials' checked/created successfully.");
     } catch (error) {
-      console.error("Error initializing database:", error);
+      console.error("FAILED to initialize database:", error);
     }
-  } else {
-    console.warn("DATABASE_URL is missing. Database initialization skipped.");
   }
 };
 
@@ -45,6 +51,26 @@ async function startServer() {
 
   app.use(cors());
   app.use(express.json());
+
+  // Database Health Check
+  app.get("/api/db-health", async (req, res) => {
+    if (!sql) {
+      return res.status(500).json({ 
+        status: "error", 
+        message: "DATABASE_URL is missing in environment variables." 
+      });
+    }
+    try {
+      await sql`SELECT 1`;
+      res.json({ status: "ok", message: "Connected to Neon successfully." });
+    } catch (error: any) {
+      res.status(500).json({ 
+        status: "error", 
+        message: "Failed to connect to Neon.",
+        details: error.message 
+      });
+    }
+  });
 
   // API Route for contact form
   app.post("/api/contact", async (req, res) => {

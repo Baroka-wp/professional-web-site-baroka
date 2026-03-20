@@ -14,6 +14,7 @@ interface Testimonial {
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,12 +30,19 @@ export default function Testimonials() {
   }, []);
 
   const fetchTestimonials = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const response = await fetch('/api/testimonials');
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Failed to fetch testimonials");
+      }
       const data = await response.json();
       setTestimonials(data);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching testimonials:", error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -110,6 +118,18 @@ export default function Testimonials() {
           <div className="flex flex-col items-center justify-center py-32 space-y-4">
             <Loader2 className="animate-spin text-primary" size={48} />
             <p className="text-slate-400 font-medium animate-pulse">Chargement des témoignages...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-32 bg-red-50 rounded-[3rem] border border-dashed border-red-200">
+            <X size={64} className="mx-auto text-red-200 mb-6" />
+            <p className="text-red-500 font-medium text-lg">Une erreur est survenue lors de la récupération des témoignages.</p>
+            <p className="text-red-400 text-sm mt-2">{error}</p>
+            <button 
+              onClick={fetchTestimonials}
+              className="mt-6 px-6 py-2 bg-red-100 text-red-600 rounded-full font-bold hover:bg-red-200 transition-colors"
+            >
+              Réessayer
+            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
