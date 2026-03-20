@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Outfit", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+
+  --color-primary: #be123c;
+  --color-on-primary: #ffffff;
+  --color-background: #f8fafc;
+  --color-on-background: #0f172a;
+  --color-surface: #ffffff;
+  --color-on-surface: #0f172a;
+  --color-on-surface-variant: #475569;
+  --color-tertiary: #8c5b63;
+  --color-tertiary-container: #fce8e9;
+  --color-on-tertiary-container: #554020;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(190, 18, 60, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(190, 18, 60, 0.05) 0px, transparent 50%),
+    linear-gradient(to right, rgba(0,0,0,0.01) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.01) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+  color: var(--color-on-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a, button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+  letter-spacing: -0.03em;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
