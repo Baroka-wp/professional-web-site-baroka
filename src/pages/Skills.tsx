@@ -56,7 +56,7 @@ export default function Skills() {
             <img
               className="w-full h-full object-cover opacity-90"
               alt="Équipe collaborant"
-              src="https://picsum.photos/seed/planning/800/400"
+              src="https://res.cloudinary.com/baroka/image/upload/v1774038983/interior-lamp_u1effr.jpg"
               referrerPolicy="no-referrer"
             />
           </div>

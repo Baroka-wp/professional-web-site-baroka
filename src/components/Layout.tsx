@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Download, Linkedin, Github, Mail } from 'lucide-react';
+import { Menu, X, Download, Linkedin, Github, Mail, Feather } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -27,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <Link to="/" className="font-headline text-2xl font-black text-slate-900 tracking-tighter flex items-center gap-2 group">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white group-hover:rotate-12 transition-transform duration-500">
-              IB
+              <Feather size={20} />
             </div>
             <span className="hidden sm:inline">Irotori Baroka</span>
           </Link>

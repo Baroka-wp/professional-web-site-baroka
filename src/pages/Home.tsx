@@ -88,7 +88,7 @@ export default function Home() {
                   <img
                     alt="Irotori Baroka portrait"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-110 hover:scale-100"
-                    src="https://picsum.photos/seed/professional/800/1000"
+                    src="https://res.cloudinary.com/baroka/image/upload/v1772560108/etu-membres/vd1oeuf2dcwtymej4xtr.jpg"
                     referrerPolicy="no-referrer"
                   />
                   {/* Floating Rail Text */}
@@ -183,7 +183,7 @@ export default function Home() {
                 <img
                   alt="Workplace"
                   className="w-full h-full object-cover"
-                  src="https://picsum.photos/seed/office/800/450"
+                  src="https://res.cloudinary.com/baroka/image/upload/v1774038275/baniere_pro_cpp0mb.png"
                   referrerPolicy="no-referrer"
                 />
               </div>
