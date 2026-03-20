@@ -17,6 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: 'Accueil', path: '/' },
     { name: 'Compétences', path: '/skills' },
     { name: 'Parcours', path: '/experience' },
+    { name: 'Témoignages', path: '/testimonials' },
     { name: 'Contact', path: '/contact' },
   ];
 

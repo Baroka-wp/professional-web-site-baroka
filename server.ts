@@ -5,10 +5,26 @@ import { fileURLToPath } from "url";
 import axios from "axios";
 import dotenv from "dotenv";
 import cors from "cors";
+import Database from "better-sqlite3";
 
 dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Initialize SQLite database (simulating Cloudflare D1)
+const db_local = new Database("testimonials.db");
+
+// Create testimonials table
+db_local.exec(`
+  CREATE TABLE IF NOT EXISTS testimonials (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    role TEXT,
+    content TEXT NOT NULL,
+    rating INTEGER DEFAULT 5,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
 
 async function startServer() {
   const app = express();
@@ -26,7 +42,6 @@ async function startServer() {
     }
 
     const BREVO_API_KEY = process.env.BREVO_API_KEY;
-    const BREVO_SMTP_USER = process.env.BREVO_SMTP_USER; // Not strictly needed for API but user mentioned it
 
     if (!BREVO_API_KEY) {
       console.error("BREVO_API_KEY is missing");
@@ -61,6 +76,37 @@ async function startServer() {
     } catch (error: any) {
       console.error("Error sending email via Brevo:", error.response?.data || error.message);
       res.status(500).json({ error: "Une erreur est survenue lors de l'envoi du message." });
+    }
+  });
+
+  // API Routes for Testimonials
+  app.get("/api/testimonials", (req, res) => {
+    try {
+      const testimonials = db_local.prepare("SELECT * FROM testimonials ORDER BY created_at DESC").all();
+      res.json(testimonials);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      res.status(500).json({ error: "Erreur lors de la récupération des témoignages." });
+    }
+  });
+
+  app.post("/api/testimonials", (req, res) => {
+    const { name, role, content, rating } = req.body;
+
+    if (!name || !content) {
+      return res.status(400).json({ error: "Le nom et le contenu sont requis." });
+    }
+
+    try {
+      const info = db_local.prepare(
+        "INSERT INTO testimonials (name, role, content, rating) VALUES (?, ?, ?, ?)"
+      ).run(name, role || "", content, rating || 5);
+      
+      const newTestimonial = db_local.prepare("SELECT * FROM testimonials WHERE id = ?").get(info.lastInsertRowid);
+      res.status(201).json(newTestimonial);
+    } catch (error) {
+      console.error("Error saving testimonial:", error);
+      res.status(500).json({ error: "Erreur lors de l'enregistrement du témoignage." });
     }
   });
 

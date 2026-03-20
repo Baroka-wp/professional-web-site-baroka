@@ -6,6 +6,7 @@ import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
 import LaForgeHub from './pages/LaForgeHub';
+import Testimonials from './pages/Testimonials';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/la-forge-hub" element={<LaForgeHub />} />
+          <Route path="/testimonials" element={<Testimonials />} />
         </Routes>
       </Layout>
     </Router>
