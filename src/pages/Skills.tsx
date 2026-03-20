@@ -17,221 +17,362 @@ export default function Skills() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="max-w-7xl mx-auto px-6 py-16 md:py-24"
+      className="max-w-7xl mx-auto px-6 py-24 md:py-32"
     >
-      <header className="mb-20 max-w-3xl">
-        <h1 className="text-5xl md:text-7xl font-headline font-extrabold text-on-surface mb-6 leading-[1.1] tracking-tight">
-          Expertise & <br /><span className="text-primary">Compétences</span>
-        </h1>
-        <p className="text-xl text-on-surface-variant font-body leading-relaxed">
-          Une approche holistique combinant la rigueur de la gestion de projet, la vision stratégique internationale et l'excellence technique en ingénierie logicielle.
-        </p>
+      <header className="mb-32 relative">
+        <div className="absolute -left-12 top-0 text-[12rem] font-black text-slate-50 leading-none select-none pointer-events-none hidden lg:block">
+          EXPERT
+        </div>
+        <div className="relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 rounded-full text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8"
+          >
+            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            Vision & Savoir-faire
+          </motion.div>
+          <h1 className="text-6xl md:text-8xl font-headline font-black text-slate-900 mb-8 leading-[0.9] tracking-tighter">
+            Expertise & <br />
+            <span className="text-primary">Compétences</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-500 font-body leading-relaxed max-w-2xl mb-12">
+            Une approche holistique combinant la rigueur de la gestion de projet, la vision stratégique internationale et l'excellence technique.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            {[
+              { label: 'Gestion de Projet', target: '01' },
+              { label: 'Coordination', target: '02' },
+              { label: 'Tech & IA', target: '03' },
+              { label: 'Impact Social', target: '04' }
+            ].map((item) => (
+              <button
+                key={item.label}
+                onClick={() => {
+                  const element = document.getElementById(item.target);
+                  element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }}
+                className="px-6 py-3 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-600 hover:border-primary hover:text-primary hover:shadow-xl transition-all active:scale-95"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        {/* 1. Project Management & Coordination */}
-        <section className="md:col-span-7 bg-white rounded-2xl p-8 md:p-10 border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="bg-primary/10 p-3 rounded-xl text-primary">
-                <Network size={24} />
+      <div className="space-y-40">
+        {/* 01. Project Management & Coordination */}
+        <section id="01" className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-6xl font-headline font-black text-primary/20">01</span>
+                <div className="h-px flex-grow bg-slate-100" />
               </div>
-              <h2 className="text-2xl font-headline font-bold text-on-surface">Gestion de Projet & Coordination</h2>
-            </div>
-            <p className="text-on-surface-variant mb-8 text-lg leading-relaxed">
-              Expertise avérée dans le pilotage de projets complexes, garantissant le respect des délais, des budgets et des objectifs stratégiques par des méthodologies agiles éprouvées.
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                <span className="text-primary font-bold block mb-1">Agile & Scrum</span>
-                <span className="text-sm text-slate-500">Optimisation des cycles de développement.</span>
-              </div>
-              <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                <span className="text-primary font-bold block mb-1">Plans de Travail</span>
-                <span className="text-sm text-slate-500">Planification stratégique et opérationnelle.</span>
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 h-48 bg-slate-100 rounded-xl flex items-center justify-center overflow-hidden border border-slate-200">
-            <img
-              className="w-full h-full object-cover opacity-90"
-              alt="Équipe collaborant"
-              src="https://res.cloudinary.com/baroka/image/upload/v1774038983/interior-lamp_u1effr.jpg"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-        </section>
-
-        {/* 2. Institutional & International Coordination */}
-        <section className="md:col-span-5 bg-slate-900 text-white rounded-2xl p-8 md:p-10 flex flex-col shadow-xl">
-          <div className="mb-8">
-            <div className="bg-white/10 p-3 rounded-xl text-white mb-6 w-fit">
-              <Globe size={24} />
-            </div>
-            <h2 className="text-2xl font-headline font-bold mb-4">Coordination Institutionnelle</h2>
-            <p className="text-slate-300 font-body leading-relaxed">
-              Point de contact stratégique entre les organisations publiques et privées à l'échelle internationale. Facilitation de partenariats multi-acteurs et alignement des intérêts.
-            </p>
-          </div>
-          <div className="space-y-4 flex-grow">
-            <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-              <Handshake size={20} className="text-primary mt-1 shrink-0" />
-              <div>
-                <p className="font-bold text-white">Interface Public-Privé</p>
-                <p className="text-sm text-slate-400">Médiation et synergie entre secteurs.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-              <Globe size={20} className="text-primary mt-1 shrink-0" />
-              <div>
-                <p className="font-bold text-white">Relations Internationales</p>
-                <p className="text-sm text-slate-400">Gestion de contextes multiculturels.</p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-8">
-            <img
-              className="rounded-xl h-32 w-full object-cover grayscale brightness-50"
-              alt="Contexte mondial"
-              src="https://picsum.photos/seed/global/800/300"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-        </section>
-
-        {/* 3. Technologies & Coding */}
-        <section className="md:col-span-8 bg-white rounded-2xl p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex flex-col md:flex-row gap-12">
-            <div className="md:w-1/2">
-              <div className="bg-primary/10 p-3 rounded-xl text-primary mb-6 w-fit">
-                <Terminal size={24} />
-              </div>
-              <h2 className="text-2xl font-headline font-bold text-on-surface mb-4">Technologies & Programmation</h2>
-              <p className="text-on-surface-variant mb-8 font-body leading-relaxed">
-                Maîtrise complète de la stack technologique moderne, de l'architecture logicielle au déploiement de modèles d'intelligence artificielle.
+              <h2 className="text-4xl font-headline font-black text-slate-900 mb-6 tracking-tight">
+                Gestion de Projet <br />& Coordination
+              </h2>
+              <p className="text-lg text-slate-600 mb-10 leading-relaxed">
+                Expertise avérée dans le pilotage de projets complexes, garantissant le respect des délais, des budgets et des objectifs stratégiques par des méthodologies agiles éprouvées.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {['JavaScript', 'Python', 'Ruby', 'Full Stack'].map((tech) => (
-                  <span key={tech} className="px-4 py-1.5 bg-slate-100 rounded-full text-xs font-bold text-slate-600 uppercase tracking-widest">
-                    {tech}
-                  </span>
-                ))}
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="group p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-primary/30 hover:bg-white hover:shadow-xl transition-all duration-500">
+                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-primary mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                    <Network size={24} />
+                  </div>
+                  <h3 className="font-bold text-slate-900 mb-2">Agile & Scrum</h3>
+                  <p className="text-sm text-slate-500">Optimisation continue des cycles de développement et de livraison.</p>
+                </div>
+                <div className="group p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-primary/30 hover:bg-white hover:shadow-xl transition-all duration-500">
+                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-primary mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                    <BarChart3 size={24} />
+                  </div>
+                  <h3 className="font-bold text-slate-900 mb-2">Plans Stratégiques</h3>
+                  <p className="text-sm text-slate-500">Planification opérationnelle rigoureuse et suivi d'indicateurs clés.</p>
+                </div>
               </div>
             </div>
-            <div className="md:w-1/2">
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 h-full flex flex-col justify-between">
-                <div>
-                  <h3 className="font-headline text-xl font-bold text-on-surface flex items-center gap-2 mb-6">
-                    <Cpu size={22} className="text-primary" />
-                    IA & Science des Données
-                  </h3>
-                  <div className="space-y-5 mb-8">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 size={18} className="text-primary mt-1 shrink-0" />
-                      <p className="text-sm text-on-surface-variant leading-relaxed">
-                        <span className="font-bold text-on-surface">Apprentissage Automatique :</span> Conception et entraînement de modèles prédictifs avancés.
-                      </p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 size={18} className="text-primary mt-1 shrink-0" />
-                      <p className="text-sm text-on-surface-variant leading-relaxed">
-                        <span className="font-bold text-on-surface">Science des Données :</span> Analyse de données massives pour la prise de décision.
-                      </p>
+            
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-auto lg:h-[500px]">
+                <img
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                  alt="Équipe collaborant"
+                  src="https://res.cloudinary.com/baroka/image/upload/v1774038983/interior-lamp_u1effr.jpg"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                <div className="absolute bottom-8 left-8 right-8">
+                  <div className="backdrop-blur-md bg-white/10 border border-white/20 p-6 rounded-2xl text-white">
+                    <p className="text-sm font-medium opacity-80 mb-1">Impact Projet</p>
+                    <p className="text-xl font-bold">Coordination de plus de 15 projets d'envergure internationale.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 02. Institutional & International Coordination */}
+        <section id="02" className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6">
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-slate-900 aspect-[4/3] lg:aspect-square">
+                <img
+                  className="w-full h-full object-cover opacity-40 grayscale"
+                  alt="Contexte mondial"
+                  src="https://picsum.photos/seed/global/800/800"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Globe size={120} className="text-primary/20 animate-pulse" />
+                </div>
+                <div className="absolute top-8 left-8">
+                  <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
+                    <Globe size={32} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-6xl font-headline font-black text-primary/20">02</span>
+                <div className="h-px flex-grow bg-slate-100" />
+              </div>
+              <h2 className="text-4xl font-headline font-black text-slate-900 mb-6 tracking-tight">
+                Coordination <br />Institutionnelle
+              </h2>
+              <p className="text-lg text-slate-600 mb-10 leading-relaxed">
+                Point de contact stratégique entre les organisations publiques et privées à l'échelle internationale. Facilitation de partenariats multi-acteurs et alignement des intérêts.
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-6 p-8 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                  <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shrink-0">
+                    <Handshake size={28} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Interface Public-Privé</h3>
+                    <p className="text-slate-500 leading-relaxed">Médiation et création de synergies durables entre les secteurs institutionnels et les entreprises technologiques.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-6 p-8 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                  <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-primary shrink-0">
+                    <Globe size={28} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Relations Internationales</h3>
+                    <p className="text-slate-500 leading-relaxed">Gestion de contextes multiculturels complexes et représentation stratégique auprès d'organismes mondiaux.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 03. Technologies & Coding */}
+        <section id="03" className="relative">
+          <div className="bg-slate-900 rounded-[3rem] p-8 md:p-16 overflow-hidden relative">
+            {/* Decorative Background Elements */}
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px]" />
+            
+            <div className="relative z-10">
+              <div className="flex flex-col lg:flex-row gap-16 items-start">
+                <div className="lg:w-1/2">
+                  <div className="flex items-center gap-4 mb-8">
+                    <span className="text-6xl font-headline font-black text-white/10">03</span>
+                    <div className="h-px flex-grow bg-white/10" />
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-headline font-black text-white mb-8 tracking-tight">
+                    Technologies & <br />Programmation
+                  </h2>
+                  <p className="text-xl text-slate-400 mb-12 leading-relaxed">
+                    Maîtrise complète de la stack technologique moderne, de l'architecture logicielle au déploiement de modèles d'intelligence artificielle.
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-3 mb-12">
+                    {['JavaScript', 'Python', 'Ruby', 'React', 'Node.js', 'PostgreSQL'].map((tech) => (
+                      <span key={tech} className="px-5 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-bold text-white uppercase tracking-widest hover:bg-primary hover:border-primary transition-all cursor-default">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="p-8 bg-white/5 border border-white/10 rounded-[2rem] backdrop-blur-sm">
+                    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                      <Cpu size={24} className="text-primary" />
+                      IA & Science des Données
+                    </h3>
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary shrink-0">
+                          <CheckCircle2 size={16} />
+                        </div>
+                        <p className="text-slate-300"><span className="text-white font-bold">Machine Learning :</span> Conception de modèles prédictifs et génératifs.</p>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary shrink-0">
+                          <CheckCircle2 size={16} />
+                        </div>
+                        <p className="text-slate-300"><span className="text-white font-bold">Data Analysis :</span> Traitement de données massives pour l'aide à la décision.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <a 
-                  href="https://github.com/Baroka-wp/dive_ML" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl text-sm font-bold hover:bg-primary transition-all group w-full md:w-fit shadow-lg shadow-slate-200"
-                >
-                  <Github size={18} />
-                  Explorer mes Google Colab
-                  <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+
+                <div className="lg:w-1/2 w-full">
+                  <div className="bg-slate-800/50 border border-white/10 rounded-[2.5rem] p-8 h-full flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-2 mb-8">
+                        <div className="w-3 h-3 rounded-full bg-red-500" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                        <div className="w-3 h-3 rounded-full bg-green-500" />
+                        <span className="ml-4 text-xs font-mono text-slate-500 uppercase tracking-widest">Terminal Output</span>
+                      </div>
+                      <div className="font-mono text-sm text-slate-300 space-y-2 mb-12">
+                        <p className="text-primary">$ baroka --expertise</p>
+                        <p className="text-green-400">{">"} Loading full_stack_capabilities...</p>
+                        <p className="text-green-400">{">"} Initializing AI_models...</p>
+                        <p className="text-slate-500">// Architecture logicielle robuste</p>
+                        <p className="text-slate-500">// Scalabilité et Performance</p>
+                        <p className="text-white mt-4">Expertise confirmée en développement d'applications critiques et systèmes intelligents.</p>
+                      </div>
+                    </div>
+                    
+                    <a 
+                      href="https://github.com/Baroka-wp/dive_ML" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-white rounded-2xl text-sm font-bold hover:bg-white hover:text-slate-900 transition-all group shadow-xl shadow-primary/20"
+                    >
+                      <Github size={20} />
+                      Explorer mes Google Colab
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 4. Talent Development */}
-        <section className="md:col-span-4 bg-slate-900 text-white rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between shadow-2xl relative overflow-hidden group border-2 border-primary/20">
-          {/* Decorative Glow */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px] group-hover:bg-primary/30 transition-all duration-700" />
-          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/10 rounded-full blur-[60px]" />
-          
-          <div className="relative z-10">
-            <motion.div 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1 bg-primary rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-8"
-            >
-              <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-              Impact Social & Mentorat
-            </motion.div>
-            
-            <div className="flex items-center gap-4 mb-6">
-              <div className="bg-primary/20 p-4 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-500">
-                <GraduationCap size={32} />
+        {/* 04. Talent Development */}
+        <section id="04" className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-6xl font-headline font-black text-primary/20">04</span>
+                <div className="h-px flex-grow bg-slate-100" />
               </div>
-              <h2 className="text-3xl font-headline font-black tracking-tighter leading-none">
-                Développement <br /> de Talents
+              <h2 className="text-4xl font-headline font-black text-slate-900 mb-6 tracking-tight">
+                Développement <br />de Talents
               </h2>
-            </div>
-            
-            <p className="text-slate-400 font-body mb-10 leading-relaxed text-lg">
-              Catalyseur d'innovation et mentorat pour la nouvelle génération de talents technologiques.
-            </p>
+              <p className="text-lg text-slate-600 mb-10 leading-relaxed">
+                Catalyseur d'innovation et mentorat pour la nouvelle génération de talents technologiques. Un engagement profond pour l'impact social par l'éducation.
+              </p>
 
-            <ul className="space-y-4">
-              <li>
+              <div className="grid grid-cols-1 gap-4">
                 <button 
                   onClick={openModal}
-                  className="w-full flex items-center gap-4 p-4 bg-white/5 text-white rounded-2xl hover:bg-primary transition-all group/btn border border-white/10 shadow-sm active:scale-95"
+                  className="flex items-center gap-6 p-6 bg-white border border-slate-100 rounded-[2rem] hover:border-primary hover:shadow-2xl transition-all group text-left"
                 >
-                  <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white group-hover/btn:bg-white/20 transition-all duration-300">
-                    <FileText size={20} />
+                  <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-all">
+                    <FileText size={24} />
                   </div>
-                  <div className="flex flex-col items-start">
-                    <span className="text-sm font-bold">Rapport d'Impact</span>
-                    <span className="text-[9px] opacity-50 uppercase tracking-wider font-bold">Africa Open Innovation Challenge</span>
+                  <div className="flex-grow">
+                    <p className="font-bold text-slate-900">Rapport d'Impact</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider font-bold">Africa Open Innovation Challenge</p>
                   </div>
-                  <ExternalLink size={14} className="ml-auto opacity-40 group-hover/btn:opacity-100 transition-opacity" />
+                  <ExternalLink size={18} className="text-slate-300 group-hover:text-primary transition-colors" />
                 </button>
-              </li>
-              <li>
+
                 <a 
                   href="https://learnwith.irotoribaroka.com/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-full flex items-center gap-4 p-4 bg-white/5 text-white rounded-2xl hover:bg-primary transition-all group/btn border border-white/10 shadow-sm active:scale-95"
+                  className="flex items-center gap-6 p-6 bg-white border border-slate-100 rounded-[2rem] hover:border-primary hover:shadow-2xl transition-all group text-left"
                 >
-                  <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white group-hover/btn:bg-white/20 transition-all duration-300">
-                    <PlayCircle size={20} />
+                  <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-all">
+                    <PlayCircle size={24} />
                   </div>
-                  <div className="flex flex-col items-start">
-                    <span className="text-sm font-bold">Masterclass IA</span>
-                    <span className="text-[9px] opacity-50 uppercase tracking-wider font-bold">Enregistrements INSTI 2023</span>
+                  <div className="flex-grow">
+                    <p className="font-bold text-slate-900">Masterclass IA</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider font-bold">Enregistrements INSTI 2023</p>
                   </div>
-                  <ExternalLink size={14} className="ml-auto opacity-40 group-hover/btn:opacity-100 transition-opacity" />
+                  <ExternalLink size={18} className="text-slate-300 group-hover:text-primary transition-colors" />
                 </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="mt-12 pt-8 border-t border-white/10 relative z-10 flex items-center justify-between">
-            <p className="text-[10px] font-black tracking-[0.3em] uppercase text-slate-500">Innovation • Leadership</p>
-            <Rocket size={18} className="text-primary animate-pulse" />
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <div className="relative p-12 bg-primary rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-auto lg:h-[500px] flex flex-col justify-end">
+                <div className="absolute top-0 left-0 w-full h-full">
+                  <img
+                    className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
+                    alt="Mentorat"
+                    src="https://picsum.photos/seed/mentor/800/600"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="absolute top-12 left-12">
+                  <GraduationCap size={80} className="text-white/20" />
+                </div>
+                <div className="relative z-10 text-white">
+                  <h3 className="text-5xl font-headline font-black mb-6 leading-none">Mentorat & <br />Transmission</h3>
+                  <p className="text-xl opacity-90 max-w-md leading-relaxed">
+                    Accompagner les innovateurs de demain pour transformer des idées en solutions concrètes à fort impact.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
 
-      <div className="mt-32 text-center max-w-3xl mx-auto">
-        <span className="text-primary/20 text-8xl font-serif leading-none block h-8">“</span>
-        <blockquote className="text-3xl font-headline font-light text-on-surface leading-relaxed tracking-tight">
-          L'excellence technique ne prend son sens que lorsqu'elle est au service d'une <span className="text-primary font-bold">coordination humaine</span> harmonieuse et d'un développement durable des talents.
+      <div className="mt-48">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-headline font-black text-slate-900 mb-4 tracking-tight">Stack Technologique</h2>
+          <p className="text-slate-500 max-w-xl mx-auto">Un aperçu rapide des outils et langages que je maîtrise au quotidien.</p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {[
+            { name: 'Agile', level: 'Expert', icon: '🔄' },
+            { name: 'React', level: 'Expert', icon: '⚛️' },
+            { name: 'Python', level: 'Expert', icon: '🐍' },
+            { name: 'Node.js', level: 'Avancé', icon: '🟢' },
+            { name: 'PostgreSQL', level: 'Avancé', icon: '🐘' },
+            { name: 'Ruby', level: 'Avancé', icon: '💎' },
+            { name: 'Docker', level: 'Intermédiaire', icon: '🐳' },
+            { name: 'TensorFlow', level: 'Avancé', icon: '🧠' },
+            { name: 'Git', level: 'Expert', icon: '🌿' },
+            { name: 'Cloudflare', level: 'Avancé', icon: '☁️' },
+            { name: 'TypeScript', level: 'Expert', icon: '📘' },
+            { name: 'Tailwind', level: 'Expert', icon: '🎨' }
+          ].map((skill) => (
+            <div key={skill.name} className="p-6 bg-white border border-slate-100 rounded-2xl text-center hover:shadow-xl hover:border-primary transition-all group">
+              <div className="text-3xl mb-3 group-hover:scale-125 transition-transform duration-300">{skill.icon}</div>
+              <p className="font-bold text-slate-900 text-sm mb-1">{skill.name}</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-primary">{skill.level}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-48 text-center max-w-4xl mx-auto">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-slate-50 rounded-full mb-12">
+          <span className="text-primary text-6xl font-serif leading-none">“</span>
+        </div>
+        <blockquote className="text-4xl md:text-5xl font-headline font-light text-slate-900 leading-[1.1] tracking-tight mb-12">
+          L'excellence technique ne prend son sens que lorsqu'elle est au service d'une <span className="text-primary font-black">coordination humaine</span> harmonieuse.
         </blockquote>
+        <div className="h-1 w-24 bg-primary mx-auto rounded-full" />
       </div>
 
       <Modal 
