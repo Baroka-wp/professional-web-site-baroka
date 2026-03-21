@@ -212,23 +212,28 @@ export default function Testimonials() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsModalOpen(false)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
             />
 
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-xl bg-white rounded-2xl sm:rounded-[3rem] shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
             >
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 p-2 hover:bg-slate-100 rounded-full transition-colors z-20"
-              >
-                <X size={20} className="sm:size-24 text-slate-400" />
-              </button>
+              {/* Header avec fond */}
+              <div className="bg-gradient-to-r from-primary to-primary/80 p-6 sm:p-8">
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute top-4 sm:top-6 right-4 sm:right-6 p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors z-20 backdrop-blur-sm"
+                >
+                  <X size={20} className="sm:size-24 text-white" />
+                </button>
+                <h2 className="text-2xl sm:text-3xl font-headline font-black text-white mb-2 pr-12">Votre recommandation</h2>
+                <p className="text-white/80 text-sm sm:text-base">Partagez votre avis sur notre collaboration.</p>
+              </div>
 
-              <div className="p-6 sm:p-8 md:p-10 md:p-12">
+              <div className="p-6 sm:p-8">
                 <AnimatePresence mode="wait">
                   {success ? (
                     <motion.div
@@ -245,77 +250,82 @@ export default function Testimonials() {
                       <p className="text-sm sm:text-base md:text-lg text-slate-500">Votre recommandation a été enregistrée et sera visible prochainement.</p>
                     </motion.div>
                   ) : (
-                    <div key="form">
-                      <div className="mb-8 sm:mb-10">
-                        <h2 className="text-2xl sm:text-3xl font-headline font-black text-slate-900 mb-2">Votre recommandation</h2>
-                        <p className="text-sm sm:text-base text-slate-500">Partagez votre avis sur notre collaboration.</p>
+                    <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1 flex items-center gap-2">
+                          <User size={12} /> Nom et Prénom
+                        </label>
+                        <input
+                          required
+                          className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-2 border-slate-200 rounded-xl sm:rounded-2xl focus:border-primary focus:bg-white text-slate-900 placeholder:text-slate-400 transition-all outline-none font-medium"
+                          placeholder="Ex: Jean Dupont"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        />
                       </div>
 
-                      <form className="space-y-4 sm:space-y-5 md:space-y-6" onSubmit={handleSubmit}>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1 flex items-center gap-2">
-                            <User size={12} /> Nom et Prénom
-                          </label>
-                          <input
-                            required
-                            className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-2 border-transparent rounded-xl sm:rounded-2xl focus:border-primary focus:bg-white text-slate-900 placeholder:text-slate-300 transition-all outline-none font-medium"
-                            placeholder="Ex: Jean Dupont"
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          />
-                        </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1 flex items-center gap-2">
+                          <Briefcase size={12} /> Poste / Entreprise
+                        </label>
+                        <input
+                          className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-2 border-slate-200 rounded-xl sm:rounded-2xl focus:border-primary focus:bg-white text-slate-900 placeholder:text-slate-400 transition-all outline-none font-medium"
+                          placeholder="Ex: Directeur Marketing @ TechCorp"
+                          value={formData.role}
+                          onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                        />
+                      </div>
 
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1 flex items-center gap-2">
-                            <Briefcase size={12} /> Poste / Entreprise
-                          </label>
-                          <input
-                            className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-2 border-transparent rounded-xl sm:rounded-2xl focus:border-primary focus:bg-white text-slate-900 placeholder:text-slate-300 transition-all outline-none font-medium"
-                            placeholder="Ex: Directeur Marketing @ TechCorp"
-                            value={formData.role}
-                            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                          />
-                        </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 ml-1 flex items-center gap-2">
+                          <MessageSquare size={12} /> Votre recommandation
+                        </label>
+                        <textarea
+                          required
+                          className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-2 border-slate-200 rounded-xl sm:rounded-2xl focus:border-primary focus:bg-white text-slate-900 placeholder:text-slate-400 transition-all outline-none font-medium resize-none"
+                          placeholder="Décrivez votre expérience de collaboration..."
+                          rows={5}
+                          value={formData.content}
+                          onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                        ></textarea>
+                      </div>
 
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1 flex items-center gap-2">
-                            <MessageSquare size={12} /> Recommandation
-                          </label>
-                          <textarea
-                            required
-                            className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-2 border-transparent rounded-xl sm:rounded-2xl focus:border-primary focus:bg-white text-slate-900 placeholder:text-slate-300 transition-all outline-none font-medium resize-none"
-                            placeholder="Décrivez votre expérience..."
-                            rows={4}
-                            value={formData.content}
-                            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                          ></textarea>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold text-slate-500">Note :</span>
                           <div className="flex gap-1">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <button
                                 key={star}
                                 type="button"
                                 onClick={() => setFormData({ ...formData, rating: star })}
-                                className={`transition-all ${formData.rating >= star ? 'text-yellow-400 scale-110' : 'text-slate-200 hover:text-yellow-200'}`}
+                                className={`transition-all p-1 ${formData.rating >= star ? 'text-yellow-400 scale-110' : 'text-slate-300 hover:text-yellow-300'}`}
                               >
-                                <Star size={18} className="sm:size-20" fill={formData.rating >= star ? 'currentColor' : 'none'} />
+                                <Star size={20} className="sm:size-24" fill={formData.rating >= star ? 'currentColor' : 'none'} />
                               </button>
                             ))}
                           </div>
-
-                          <button
-                            disabled={submitting}
-                            className="bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center gap-2 sm:gap-3 disabled:opacity-50 text-sm sm:text-base"
-                            type="submit"
-                          >
-                            {submitting ? <Loader2 className="animate-spin" size={16} className="sm:size-20" /> : <Send size={16} className="sm:size-18" />}
-                            Envoyer
-                          </button>
                         </div>
-                      </form>
-                    </div>
+
+                        <button
+                          disabled={submitting}
+                          className="w-full sm:w-auto bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                          type="submit"
+                        >
+                          {submitting ? (
+                            <>
+                              <Loader2 className="animate-spin" size={16} className="sm:size-20" />
+                              Envoi...
+                            </>
+                          ) : (
+                            <>
+                              <Send size={16} className="sm:size-18" />
+                              Envoyer
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </form>
                   )}
                 </AnimatePresence>
               </div>

@@ -96,7 +96,8 @@ export default function Experience() {
 
             <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'pl-10 md:pl-12 lg:pl-16' : 'pr-8 md:pr-12 lg:pr-16 pl-10 md:pl-0'}`}>
               <div className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-[2.5rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 group-hover:-translate-y-1">
-                <span className="md:hidden text-primary font-black text-xs tracking-[0.2em] uppercase mb-3 block opacity-50">{exp.period}</span>
+                <span className="md:hidden text-primary font-black text-xs tracking-[0.2em] uppercase mb-2 block opacity-50">{exp.period}</span>
+                <h3 className="md:hidden font-headline text-lg sm:text-xl font-bold text-primary mb-1">{exp.company}</h3>
                 <h4 className="font-headline text-lg sm:text-xl md:text-2xl font-bold text-on-surface mb-3 sm:mb-4">{exp.role}</h4>
                 <p className="text-on-surface-variant mb-6 sm:mb-8 font-body leading-relaxed text-sm sm:text-base md:text-lg">{exp.description}</p>
                 <div className="flex flex-wrap gap-2">
