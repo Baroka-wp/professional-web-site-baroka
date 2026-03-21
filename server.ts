@@ -47,7 +47,7 @@ initDb();
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = 5002;
 
   app.use(cors());
   app.use(express.json());
@@ -55,19 +55,19 @@ async function startServer() {
   // Database Health Check
   app.get("/api/db-health", async (req, res) => {
     if (!sql) {
-      return res.status(500).json({ 
-        status: "error", 
-        message: "DATABASE_URL is missing in environment variables." 
+      return res.status(500).json({
+        status: "error",
+        message: "DATABASE_URL is missing in environment variables."
       });
     }
     try {
       await sql`SELECT 1`;
       res.json({ status: "ok", message: "Connected to Neon successfully." });
     } catch (error: any) {
-      res.status(500).json({ 
-        status: "error", 
+      res.status(500).json({
+        status: "error",
         message: "Failed to connect to Neon.",
-        details: error.message 
+        details: error.message
       });
     }
   });
@@ -148,7 +148,7 @@ async function startServer() {
         VALUES (${name}, ${role || ""}, ${content}, ${rating || 5}) 
         RETURNING *
       `;
-      
+
       res.status(201).json(result[0]);
     } catch (error) {
       console.error("Error saving testimonial:", error);
