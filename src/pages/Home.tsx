@@ -18,7 +18,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-0 items-center">
-            
+
             {/* Left Content */}
             <div className="lg:col-span-7 py-12 lg:py-0">
               <motion.div
@@ -28,7 +28,7 @@ export default function Home() {
                 className="inline-flex items-center gap-3 px-4 py-2 bg-slate-900 text-white rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10 shadow-xl shadow-slate-200"
               >
                 <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
-                Ingénierie Tech & Impact Social
+                Innovation tech & Impact social
               </motion.div>
 
               <motion.h1
@@ -37,9 +37,9 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.1 }}
                 className="text-4xl md:text-6xl lg:text-7xl font-headline font-black text-slate-900 leading-[1.1] tracking-tighter mb-10"
               >
-                DESIGN <br />
-                <span className="text-primary uppercase">Stratégique</span> <br />
-                & IMPACT.
+                Vision <br />
+                <span className="text-primary uppercase">stratégique</span> <br />
+                & Pilotage opérationnelle.
               </motion.h1>
 
               <motion.p
@@ -48,7 +48,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-xl lg:text-2xl text-slate-500 max-w-xl mb-12 font-body leading-relaxed border-l-4 border-primary/20 pl-8"
               >
-                Consultant en Gestion de Projets & Coordination Opérationnelle. 
+                Consultant en Gestion de Projets & Coordination Opérationnelle.
                 Je transforme les visions complexes en réalités tangibles à travers l'Afrique, le Japon et l'Europe.
               </motion.p>
 
@@ -100,7 +100,7 @@ export default function Home() {
                 </div>
 
                 {/* Experience Badge */}
-                <motion.div 
+                <motion.div
                   initial={{ x: 50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.8 }}
