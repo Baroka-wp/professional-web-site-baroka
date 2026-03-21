@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Star, Quote, Send, User, Briefcase, Loader2, CheckCircle2, MessageSquare, Plus, X } from 'lucide-react';
+import SEO from '../components/SEO';
 
 interface Testimonial {
   id: number;
@@ -74,7 +75,14 @@ export default function Testimonials() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa]">
+    <>
+      <SEO
+        title="Témoignages & Recommandations"
+        description="Découvrez les témoignages de clients et collaborateurs ayant travaillé avec Irotori Baroka. Recommandations et retours d'expérience."
+        canonical="https://baroka.com/testimonials"
+        ogImage="https://baroka.com/testimonials-og.jpg"
+      />
+      <div className="min-h-screen bg-[#fafafa]">
       {/* Hero Section */}
       <section className="relative pt-20 sm:pt-24 md:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
@@ -334,5 +342,6 @@ export default function Testimonials() {
         )}
       </AnimatePresence>
     </div>
+    </>
   );
 }

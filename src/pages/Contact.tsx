@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, MapPin, Send, Linkedin, Github, Loader2, CheckCircle2, Phone, Star, GraduationCap } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -44,12 +45,19 @@ export default function Contact() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24"
-    >
+    <>
+      <SEO
+        title="Contact"
+        description="Contactez Irotori Baroka pour vos projets de consulting en gestion de projet et innovation technologique. Basé à Abomey-Calavi, Bénin."
+        canonical="https://baroka.com/contact"
+        ogImage="https://baroka.com/contact-og.jpg"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24"
+      >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 md:gap-20 lg:gap-24">
         {/* Intro Section */}
         <div className="lg:col-span-5 space-y-12 sm:space-y-14 md:space-y-16">
@@ -255,5 +263,6 @@ export default function Contact() {
         </div>
       </div>
     </motion.div>
+    </>
   );
 }

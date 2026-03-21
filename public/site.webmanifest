@@ -1,0 +1,27 @@
+{
+  "name": "Irotori Baroka - Consultant",
+  "short_name": "Irotori Baroka",
+  "description": "Consultant en Gestion de Projets & Coordination Opérationnelle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#be123c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity", "finance"],
+  "lang": "fr-FR",
+  "dir": "ltr"
+}

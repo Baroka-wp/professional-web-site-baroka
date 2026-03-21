@@ -1,9 +1,17 @@
 import { motion } from 'motion/react';
 import { Rocket, Target, Users, Briefcase, Zap, ArrowRight, ExternalLink, CheckCircle2 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function LaForgeHub() {
   return (
-    <motion.div
+    <>
+      <SEO
+        title="La Forge Hub - Innovation & Impact Social"
+        description="La Forge Hub : catalyseur de talents en tech africaine. Projet ÉLAN pour l'emploi et Projet SPARK pour l'innovation."
+        canonical="https://baroka.com/la-forge-hub"
+        ogImage="https://baroka.com/laforge-og.jpg"
+      />
+      <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -174,5 +182,6 @@ export default function LaForgeHub() {
         </div>
       </section>
     </motion.div>
+    </>
   );
 }

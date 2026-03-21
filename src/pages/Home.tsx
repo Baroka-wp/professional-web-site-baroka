@@ -1,14 +1,22 @@
 import { motion } from 'motion/react';
 import { Globe, ArrowRight, Lightbulb, TrendingUp, Languages, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function Home() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <>
+      <SEO
+        title="Accueil - Consultant en Gestion de Projets"
+        description="Irotori Baroka, Consultant en Gestion de Projets & Coordination Opérationnelle. Innovation tech & Impact social en Afrique, Japon et Europe."
+        canonical="https://baroka.com/"
+        ogImage="https://baroka.com/og-image.jpg"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
         {/* Background Decorative Elements */}
@@ -245,5 +253,6 @@ export default function Home() {
         </div>
       </section>
     </motion.div>
+    </>
   );
 }

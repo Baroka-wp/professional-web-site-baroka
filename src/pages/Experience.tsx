@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const experiences = [
   {
@@ -47,12 +48,19 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24"
-    >
+    <>
+      <SEO
+        title="Parcours Professionnel & Expérience"
+        description="10+ années d'expérience en gestion de projet, coordination internationale et innovation technologique. Découvrez mon parcours au Japon, en Afrique et en Europe."
+        canonical="https://baroka.com/experience"
+        ogImage="https://baroka.com/experience-og.jpg"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24"
+      >
       <section className="mb-16 sm:mb-20 md:mb-24 text-center">
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
@@ -153,5 +161,6 @@ export default function Experience() {
         </Link>
       </div>
     </motion.div>
+    </>
   );
 }

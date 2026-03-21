@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Network, Globe, Terminal, GraduationCap, CheckCircle2, Cpu, BarChart3, Handshake, ExternalLink, Github, FileText, PlayCircle, Rocket, ArrowRight } from 'lucide-react';
 import Modal from '../components/Modal';
+import SEO from '../components/SEO';
 
 export default function Skills() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,12 +14,19 @@ export default function Skills() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32"
-    >
+    <>
+      <SEO
+        title="Compétences & Expertise"
+        description="Expertise en gestion de projet agile, coordination internationale, technologies & IA. Maîtrise de React, Python, Node.js, PostgreSQL et plus."
+        canonical="https://baroka.com/skills"
+        ogImage="https://baroka.com/skills-og.jpg"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32"
+      >
       <header className="mb-20 sm:mb-28 md:mb-32 relative">
         <div className="absolute -left-4 sm:-left-8 lg:-left-12 top-0 text-[8rem] sm:text-[10rem] lg:text-[12rem] font-black text-slate-50 leading-none select-none pointer-events-none hidden lg:block">
           EXPERT
@@ -381,8 +389,8 @@ export default function Skills() {
         title="Rapport d'Impact - Africa Open Innovation Challenge"
       >
         <div className="w-full h-full min-h-[70vh]">
-          <iframe 
-            src="https://drive.google.com/file/d/1QOpaJ-vOq18vRQGKOoZyFSlLi2pBkJDf/preview" 
+          <iframe
+            src="https://drive.google.com/file/d/1QOpaJ-vOq18vRQGKOoZyFSlLi2pBkJDf/preview"
             className="w-full h-full border-none"
             title="Rapport d'Impact PDF"
             allow="autoplay"
@@ -390,6 +398,7 @@ export default function Skills() {
         </div>
       </Modal>
     </motion.div>
+    </>
   );
 }
 
