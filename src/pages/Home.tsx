@@ -91,7 +91,7 @@ export default function Home() {
                   className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all hover:shadow-xl active:scale-95"
                   style={{ backgroundColor: '#0D1B2A', color: 'white' }}
                 >
-                  Voir mes programmes
+                  Voir mes expériences
                   <ArrowRight size={18} />
                 </Link>
                 <Link
@@ -427,7 +427,7 @@ export default function Home() {
               </h2>
 
               <p className="text-base sm:text-lg text-white/70 mb-8 sm:mb-10 font-body leading-relaxed">
-                Je prends en charge la coordination complète de vos programmes de renforcement des capacités — pour étudiants, collégiens, salariés, jeunes diplômés ou en reconversion. De la conception à l'impact.
+                Je prends en charge la coordination complète de vos programmes de renforcement des capacités : pour étudiants, collégiens, salariés, jeunes diplômés ou en reconversion. De la conception à l'impact.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">

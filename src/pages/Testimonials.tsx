@@ -97,7 +97,7 @@ export default function Testimonials() {
             className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 bg-white shadow-sm rounded-full text-primary text-[8px] sm:text-[10px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] border border-slate-100 mb-6 sm:mb-8"
           >
             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-pulse" />
-            Recommandations
+            Recommandez
           </motion.div>
 
           <motion.h1
@@ -106,7 +106,7 @@ export default function Testimonials() {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-headline font-black text-slate-900 leading-[0.95] sm:leading-[0.9] tracking-tighter mb-6 sm:mb-8 px-2"
           >
-            Ils ont fait <br />confiance à <span className="text-primary italic">l'expertise</span>.
+             <span className="text-primary italic">Irotori Baroka</span>.
           </motion.h1>
 
           <motion.p
@@ -115,8 +115,24 @@ export default function Testimonials() {
             transition={{ delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto font-body px-4"
           >
-            Découvrez les retours d'expérience de mes collaborateurs et clients. Chaque projet est une opportunité de créer un impact durable et mesurable.
+            Si nous avons déjà collaboré, Votre retour est precieux !
           </motion.p>
+                  {/* CTA Button */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-12 sm:mt-16 md:mt-20 text-center px-4"
+        >
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="group relative inline-flex items-center gap-2 sm:gap-4 px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-4 bg-slate-900 text-white rounded-full font-black text-sm sm:text-base md:text-lg shadow-2xl hover:bg-primary transition-all overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            <span className="relative z-10 px-2">Laisser une recommandation</span>
+            <Plus size={18} className="sm:size-24 relative z-10 group-hover:rotate-90 transition-transform duration-300" />
+          </button>
+        </motion.div>
         </div>
       </section>
 
@@ -192,23 +208,6 @@ export default function Testimonials() {
             </AnimatePresence>
           </div>
         )}
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-12 sm:mt-16 md:mt-20 text-center px-4"
-        >
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="group relative inline-flex items-center gap-2 sm:gap-4 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-6 bg-slate-900 text-white rounded-full font-black text-sm sm:text-base md:text-lg shadow-2xl hover:bg-primary transition-all overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            <span className="relative z-10 px-2">Laisser une recommandation</span>
-            <Plus size={18} className="sm:size-24 relative z-10 group-hover:rotate-90 transition-transform duration-300" />
-          </button>
-        </motion.div>
       </section>
 
       {/* Recommendation Modal */}
