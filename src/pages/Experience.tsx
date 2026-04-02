@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 const experiences = [
   {
     company: 'GLOBODAI Software',
-    period: '2022 — 2025',
+    period: '2022 - 2025',
     role: 'Développeur Principal & Chef de Projet',
     description: 'Direction technique et pilotage de projets logiciels d\'envergure, assurant la transition numérique et l\'excellence opérationnelle.',
     tags: ['Management', 'Architecture Logicielle'],
@@ -14,7 +14,7 @@ const experiences = [
   },
   {
     company: 'ProSuite Africa',
-    period: '2023 — 2024',
+    period: '2023 - 2024',
     role: 'Coordinateur Local & Développeur Principal',
     description: 'Coordination des opérations locales et développement de solutions sur mesure pour le marché africain francophone.',
     tags: ['Coordination Locale', 'Fullstack'],
@@ -22,7 +22,7 @@ const experiences = [
   },
   {
     company: 'ADNJ Japan',
-    period: '2020 — Présent',
+    period: '2020 - Présent',
     role: 'Coordinateur de Projet',
     description: 'Gestion des initiatives de l\'Africa Diaspora Network Japan, favorisant les ponts culturels et économiques entre le Japon et l\'Afrique.',
     tags: ['Relations Publiques', 'Engagement de la diaspora'],
@@ -30,7 +30,7 @@ const experiences = [
   },
   {
     company: 'Africa Samurai Consulting',
-    period: '2018 — Présent',
+    period: '2018 - Présent',
     role: 'Directeur Général',
     description: 'Leadership stratégique et supervision de l\'Africa Open Innovation Challenge, catalysant l\'entrepreneuriat technologique.',
     tags: ['Conseil Stratégique', 'Open Innovation'],
@@ -38,7 +38,7 @@ const experiences = [
   },
   {
     company: 'Itt4africa',
-    period: '2015 — 2016',
+    period: '2015 - 2016',
     role: 'Chef de Projet',
     description: 'Gestion de projets technologiques visant à améliorer la connectivité et les services IT sur le continent.',
     tags: ['Gestion IT', 'Afrique Tech'],
