@@ -5,12 +5,28 @@ import SEO from '../components/SEO';
 
 const experiences = [
   {
+    company: 'EPAC & INSTI Lokossa',
+    period: '2023 - 2024',
+    role: 'Coordinateur du programme de renforcement des capacités en IA et Ingénierie web',
+    description: 'Attribution de 64 bourses de formation en IA avec le soutien de AOTS (Japon). Interface entre les partenaires japonais et les universités technologiques du Bénin (EPAC, Lokossa). Mentoring des étudiants en intelligence artificielle et planification complète du programme avec reporting.',
+    tags: ['Coordination', 'IA & ML', 'Interface internationale', 'Mentoring'],
+    color: 'border-primary'
+  },
+  {
     company: 'GLOBODAI Software',
     period: '2022 - 2025',
     role: 'Développeur Principal & Chef de Projet',
     description: 'Direction technique et pilotage de projets logiciels d\'envergure, assurant la transition numérique et l\'excellence opérationnelle.',
     tags: ['Management', 'Architecture Logicielle'],
     color: 'border-primary'
+  },
+  {
+    company: 'JICA × ADN (ASIN)',
+    period: '2020 - 2022',
+    role: 'Coordinateur local du programme Open Innovation Challenge',
+    description: 'Pilotage du programme : 1 700 candidatures | 24 jeunes formés | 3 formateurs. Planification, recrutement, formation en ingénierie web et insertion professionnelle. Coordination complète du programme initié par la JICA avec l\'appui de l\'ADN (actuel ASIN).',
+    tags: ['Coordination', 'Formation', 'Ingénierie web', 'Insertion professionnelle'],
+    color: 'border-tertiary-container'
   },
   {
     company: 'ProSuite Africa',

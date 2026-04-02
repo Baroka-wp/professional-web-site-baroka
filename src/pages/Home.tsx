@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Globe, ArrowRight, Lightbulb, TrendingUp, Languages, CheckCircle2, GraduationCap, Cpu } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import NetworkCanvas from '../components/NetworkCanvas';
@@ -409,25 +409,87 @@ export default function Home() {
 
       {/* Final CTA Banner */}
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-12">
-        <div className="max-w-4xl mx-auto bg-primary rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12 lg:p-16 text-center text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-white/5 rounded-full blur-2xl"></div>
+        <div className="max-w-7xl mx-auto rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12 lg:p-16 text-white relative overflow-hidden" style={{ backgroundColor: '#0D1B2A' }}>
+          {/* Éléments décoratifs - z-index bas */}
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-white/10 rounded-full blur-3xl" style={{ zIndex: 1 }}></div>
+          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-white/5 rounded-full blur-2xl" style={{ zIndex: 1 }}></div>
 
-          <div className="relative z-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-headline font-black mb-4 sm:mb-6 tracking-tight">
-              Vous pilotez un programme de formation ?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-10 md:mb-12 font-body">
-              Discutons de votre projet.
-            </p>
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center" style={{ zIndex: 10 }}>
 
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 sm:gap-3 bg-white text-primary px-8 sm:px-10 md:px-12 py-3 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg hover:bg-slate-50 hover:shadow-2xl transition-all active:scale-95"
-            >
-              Me contacter
-              <ArrowRight size={20} className="sm:size-24" />
-            </Link>
+            {/* Colonne gauche - Texte et boutons */}
+            <div>
+              <p className="text-xs sm:text-sm font-black uppercase tracking-widest mb-4 sm:mb-6" style={{ color: '#C8102E' }}>
+                TRAVAILLONS ENSEMBLE
+              </p>
+
+              <h2 className="font-headline font-black mb-4 sm:mb-6 tracking-tight leading-tight" style={{ fontSize: '22px' }}>
+                Vous coordonnez un programme de <span style={{ color: '#C8102E', whiteSpace: 'nowrap' }}>formation ?</span>
+              </h2>
+
+              <p className="text-base sm:text-lg text-white/70 mb-8 sm:mb-10 font-body leading-relaxed">
+                Je prends en charge la coordination complète de vos programmes de renforcement des capacités — pour étudiants, collégiens, salariés, jeunes diplômés ou en reconversion. De la conception à l'impact.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                {/* Bouton principal - Me contacter */}
+                <Link
+                  to="/contact"
+                  className="relative z-10 inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base transition-all duration-200 hover:shadow-xl active:scale-95"
+                  style={{
+                    backgroundColor: '#C8102E',
+                    color: '#ffffff'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#a00d24'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#C8102E'}
+                >
+                  Me contacter
+                  <ArrowRight size={18} />
+                </Link>
+
+                {/* Bouton secondaire - Voir mon parcours */}
+                <Link
+                  to="/experience"
+                  className="relative z-10 inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base transition-all duration-200 hover:shadow-xl active:scale-95"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: '#ffffff',
+                    border: '1px solid rgba(255,255,255,0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#C8102E';
+                    e.currentTarget.style.borderColor = '#C8102E';
+                    e.currentTarget.style.color = '#fff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+                    e.currentTarget.style.color = '#ffffff';
+                  }}
+                >
+                  Voir mon parcours
+                </Link>
+              </div>
+            </div>
+
+            {/* Colonne droite - Liste à puces */}
+            <div className="space-y-4 sm:space-y-5">
+              {[
+                'Institutions & universités',
+                'Agences de coopération internationale',
+                'Programmes financés (JICA, GIZ, AFD...)',
+                'Bénin · Afrique · Japon'
+              ].map((item, index) => (
+                <div key={index} className="flex items-start gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#C8102E' }} />
+                  </div>
+                  <p className="text-base sm:text-lg lg:text-xl text-white/80 font-body leading-relaxed">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
