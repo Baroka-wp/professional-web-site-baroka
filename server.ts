@@ -1,15 +1,12 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
-import { fileURLToPath } from "url";
 import axios from "axios";
 import dotenv from "dotenv";
 import cors from "cors";
 import { neon } from "@neondatabase/serverless";
 
 dotenv.config();
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Initialize Neon database
 const databaseUrl = process.env.DATABASE_URL;
@@ -159,6 +156,7 @@ async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
+      configFile: false,
       server: { middlewareMode: true },
       appType: "spa",
     });
@@ -166,7 +164,7 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("(.*)", (req, res) => {
+    app.use((req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
