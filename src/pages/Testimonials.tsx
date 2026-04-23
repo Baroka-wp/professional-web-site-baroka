@@ -321,7 +321,7 @@ export default function Testimonials() {
                         >
                           {submitting ? (
                             <>
-                              <Loader2 className="animate-spin" size={16} className="sm:size-20" />
+                              <Loader2 className="animate-spin sm:size-20" size={16} />
                               Envoi...
                             </>
                           ) : (
